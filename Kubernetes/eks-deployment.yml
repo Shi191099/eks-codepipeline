@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   namespace: eks-demo
   name: deployment-eks-demo
+  annotations:
+    fluxcd.io/automated: "true"
 spec:
   selector:
     matchLabels:
@@ -15,7 +17,7 @@ spec:
         app.kubernetes.io/name: app-eks-demo
     spec:
       containers:
-      - image: 505874605366.dkr.ecr.us-east-1.amazonaws.com/dockerize-angular-app
+      - image: 505874605366.dkr.ecr.us-east-1.amazonaws.com/fluxcd-eks
         imagePullPolicy: Always
         name: app-eks-demo
         ports:
