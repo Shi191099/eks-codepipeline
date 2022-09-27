@@ -4,7 +4,8 @@ phases:
   install:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_REGION)
+      #- $(aws ecr get-login --no-include-email --region $AWS_REGION)  
+      - aws ecr get-login-password --no-include-email --region us-east-1 | docker login --username AWS --password-stdin 505874605366.dkr.ecr.us-east-1.amazonaws.com
       - curl -sS -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
       - curl -sS -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.20.4/2021-04-12/bin/linux/amd64/kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator
